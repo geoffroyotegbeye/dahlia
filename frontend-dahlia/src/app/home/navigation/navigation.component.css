@@ -1,0 +1,213 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #965a00;
+  color: white;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(150, 90, 0, 0.2);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0;
+}
+
+.nav-links a:hover {
+  color: #ffa033;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #ffa033;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle:active svg {
+  transform: scale(0.9);
+}
+
+.donate-button {
+  background-color: #c17000;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.donate-button:hover {
+  background-color: #e88300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(193, 112, 0, 0.3);
+}
+
+.donate-button svg {
+  transition: transform 0.3s ease;
+}
+
+.donate-button:hover svg {
+  transform: scale(1.2);
+}
+
+/* Animation de descente pour le menu mobile */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Styles spécifiques pour le menu mobile */
+.mobile-menu-enter-active {
+  animation: slideDown 0.3s ease-out;
+}
+
+.mobile-menu-leave-active {
+  animation: slideUp 0.3s ease-in;
+}
+
+/* Styles de base pour la navigation */
+nav {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* Styles pour les icônes SVG */
+svg {
+  transition: all 0.3s ease;
+}
+
+/* Effets de hover pour les liens */
+a:hover svg {
+  transform: scale(1.1);
+  color: #e88300; /* Orange Dahlia */
+}
+
+/* Styles pour le menu déroulant */
+.dropdown-menu {
+  transition: all 0.3s ease;
+  transform-origin: top center;
+}
+
+.dropdown-menu-enter,
+.dropdown-menu-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.dropdown-menu-enter-active,
+.dropdown-menu-leave-active {
+  transition: all 0.3s ease;
+}
+
+.dropdown-menu-enter-to,
+.dropdown-menu-leave {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+/* Animations de scroll */
+nav.scrolled {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mobile-menu {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+}

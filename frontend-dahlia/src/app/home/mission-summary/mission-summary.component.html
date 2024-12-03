@@ -1,0 +1,100 @@
+<section class="relative py-16 md:py-24 bg-white dark:bg-gray-900 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Colonne Vidéo -->
+      <div class="relative group">
+        <div class="rounded-xl overflow-hidden shadow-2xl transform transition-transform duration-300 group-hover:scale-105">
+          <img 
+            [src]="thumbnailPath" 
+            alt="Notre Mission" 
+            class="w-full h-96 object-cover"
+          >
+          <div class="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button 
+              class="bg-white text-orange-500 w-20 h-20 rounded-full flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300"
+              (click)="openVideo()">
+              <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Vidéo -->
+        <div 
+          *ngIf="isVideoPlaying" 
+          class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+          (click)="closeVideo()">
+          <div 
+            class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden max-w-4xl w-full shadow-2xl video-player"
+            (click)="$event.stopPropagation()">
+            <div class="relative">
+              <video 
+                #videoPlayer
+                [src]="videoPath"
+                class="w-full aspect-video"
+                controls
+                (ended)="closeVideo()">
+                Votre navigateur ne supporte pas la lecture vidéo.
+              </video>
+              <button 
+                class="absolute top-4 right-4 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300"
+                (click)="closeVideo()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne de Texte -->
+      <div class="space-y-8">
+        <div class="space-y-4">
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-white leading-tight">
+            Notre Mission
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300 max-w-xl">
+            Nous sommes dédiés à créer un impact positif et durable dans les communautés les plus vulnérables. 
+            Notre approche holistique vise à autonomiser, innover et collaborer pour transformer des vies.
+          </p>
+        </div>
+
+        <!-- Valeurs de Mission -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <div 
+            *ngFor="let value of missionValues" 
+            class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="value.icon"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                {{ value.title }}
+              </h3>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              {{ value.description }}
+            </p>
+          </div>
+        </div>
+
+        <!-- Bouton d'Action -->
+        <div class="mt-8">
+          <button 
+            class="px-6 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-300 flex items-center justify-center space-x-2"
+            (click)="navigateToAbout()">
+            <span>En Savoir Plus</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

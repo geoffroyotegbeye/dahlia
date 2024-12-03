@@ -1,0 +1,46 @@
+/* Styles spécifiques pour le footer */
+footer {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Animation de la barre de progression */
+@keyframes progressAnimation {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+/* Effets de hover pour le bouton */
+button {
+  transition: all 0.3s ease;
+  will-change: transform, box-shadow;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  footer {
+    text-align: center;
+  }
+  
+  .donation-progress {
+    width: 100%;
+  }
+}
+
+/* Accessibilité et contraste */
+@media (prefers-color-scheme: dark) {
+  footer {
+    color: #f0f0f0;
+  }
+}

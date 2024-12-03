@@ -1,0 +1,133 @@
+<footer>
+  <!-- Section de don avec image de fond -->
+  <section class="relative bg-cover bg-center bg-no-repeat py-16 text-white" 
+    style="background-image: url('assets/images/footer-bg.jpg')">
+    <!-- Overlay sombre semi-transparent -->
+    <div class="absolute inset-0 bg-black opacity-60"></div>
+    
+    <div class="relative container mx-auto px-4 z-10 flex flex-col md:flex-row items-center justify-between">
+      <!-- Contenu de gauche : Progression des dons -->
+      <div class="w-full md:w-1/2 mb-8 md:mb-0 text-center md:text-left">
+        <h2 class="text-3xl font-bold mb-4">Soutenez Notre Mission</h2>
+        
+        <!-- Barre de progression des dons -->
+        <div class="bg-white/20 rounded-full h-4 mb-4 overflow-hidden">
+          <div 
+            class="bg-orange-500 h-full rounded-full transition-all duration-700 ease-in-out"
+            [style.width.%]="donationProgress"
+          ></div>
+        </div>
+        
+        <!-- Détails des dons -->
+        <div class="flex justify-between text-sm mb-2">
+          <span>Collecte actuelle</span>
+          <span>Objectif</span>
+        </div>
+        <div class="flex justify-between font-semibold">
+          <span>{{ formatAmount(totalDonation) }}</span>
+          <span>{{ formatAmount(donationGoal) }}</span>
+        </div>
+      </div>
+      
+      <!-- Contenu de droite : Bouton de don -->
+      <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+        <div class="text-center">
+          <p class="text-xl mb-4">Chaque don compte !</p>
+          <button 
+            routerLink="/donate"
+            class="px-8 py-4 bg-orange-500 text-white rounded-full text-lg font-semibold 
+                   hover:bg-orange-600 transition-colors duration-300 
+                   transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Faire un Don
+            <svg 
+              class="inline-block w-6 h-6 ml-2" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                stroke-width="2" 
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Barre de séparation -->
+  <div class="border-t border-gray-200 my-8"></div>
+
+  <!-- Section footer traditionnelle -->
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <!-- Colonne Logo et Description -->
+      <div>
+        <img src="assets/images/logo-full.svg" alt="Dahlia Logo" class="h-12 mb-4">
+        <p class="text-gray-600">Ensemble, construisons un avenir plus solidaire et engagé.</p>
+      </div>
+
+      <!-- Colonne Navigation -->
+      <div>
+        <h4 class="font-semibold text-lg mb-4 text-gray-800">Navigation</h4>
+        <ul class="space-y-2">
+          <li><a routerLink="/about" class="text-gray-600 hover:text-orange-500">Notre Mission</a></li>
+          <li><a routerLink="/projects" class="text-gray-600 hover:text-orange-500">Nos Projets</a></li>
+          <li><a routerLink="/volunteer" class="text-gray-600 hover:text-orange-500">Devenir Bénévole</a></li>
+          <li><a routerLink="/news" class="text-gray-600 hover:text-orange-500">Actualités</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne Actions -->
+      <div>
+        <h4 class="font-semibold text-lg mb-4 text-gray-800">Impliquez-vous</h4>
+        <ul class="space-y-2">
+          <li><a routerLink="/donate" class="text-gray-600 hover:text-orange-500">Faire un Don</a></li>
+          <li><a routerLink="/fundraising" class="text-gray-600 hover:text-orange-500">Collectes de Fonds</a></li>
+          <li><a routerLink="/events" class="text-gray-600 hover:text-orange-500">Événements</a></li>
+          <li><a routerLink="/contact" class="text-gray-600 hover:text-orange-500">Contactez-nous</a></li>
+        </ul>
+      </div>
+
+      <!-- Colonne Contact et Réseaux Sociaux -->
+      <div>
+        <h4 class="font-semibold text-lg mb-4 text-gray-800">Restons Connectés</h4>
+        <div class="space-y-2 mb-4">
+          <!-- <p class="text-gray-600">Email: contact@dahlia.org</p> -->
+          <p class="text-gray-600">Téléphone: +33 1 23 45 67 89</p>
+        </div>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-600 hover:text-orange-500">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-orange-500">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+          </a>
+          <a href="#" class="text-gray-600 hover:text-orange-500">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Droits d'auteur et mentions légales -->
+    <div class="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
+      <p>&copy; 2024 Association Dahlia. Tous droits réservés.</p>
+      <div class="mt-2 space-x-4">
+        <a href="#" class="hover:text-orange-500">Mentions légales</a>
+        <a href="#" class="hover:text-orange-500">Politique de confidentialité</a>
+        <a href="#" class="hover:text-orange-500">Conditions d'utilisation</a>
+      </div>
+    </div>
+  </div>
+</footer>

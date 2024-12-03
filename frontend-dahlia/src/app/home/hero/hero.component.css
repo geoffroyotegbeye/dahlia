@@ -1,0 +1,320 @@
+.hero-container {
+  position: relative;
+  height: calc(100vh - 0.5rem);
+  overflow: hidden;
+}
+
+.slides-container {
+  position: relative;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s;
+}
+
+.slide.opacity-0 {
+  opacity: 0;
+}
+
+.slide.opacity-100 {
+  opacity: 1;
+}
+
+.image-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #965a00;
+}
+
+.slide-placeholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #785304, #5f4706);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide-image.loaded {
+  opacity: 1;
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  backdrop-filter: blur(2px);
+}
+
+.slide-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.slide-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  transition: transform 0.7s;
+  line-height: 1.2;
+  max-width: 1000px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.slide-title.translate-y-0 {
+  transform: translateY(0);
+}
+
+.slide-title.translate-y-10 {
+  transform: translateY(2.5rem);
+}
+
+.slide-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  max-width: 800px;
+  transition: transform 0.7s;
+  delay: 0.1s;
+  color: #ffa033;
+  font-weight: 600;
+}
+
+.slide-subtitle.translate-y-0 {
+  transform: translateY(0);
+}
+
+.slide-subtitle.translate-y-10 {
+  transform: translateY(2.5rem);
+}
+
+.slide-description {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  opacity: 0.9;
+  line-height: 1.6;
+  transition: transform 0.7s;
+  delay: 0.2s;
+  color: white;
+}
+
+.slide-description.translate-y-0 {
+  transform: translateY(0);
+}
+
+.slide-description.translate-y-10 {
+  transform: translateY(2.5rem);
+}
+
+.start-button {
+  background-color: #c17000;
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.start-button:hover {
+  background-color: #e88300;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(193, 112, 0, 0.3);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 30;
+  transition: opacity 0.3s;
+}
+
+.scroll-indicator:hover {
+  color: #ffa033;
+  transform: translateY(-5px);
+}
+
+.navigation-buttons {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 20;
+}
+
+.navigation-buttons button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.navigation-buttons button.active {
+  background-color: #c17000;
+  transform: scale(1.2);
+}
+
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s;
+}
+
+.prev-button:hover,
+.next-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.prev-button {
+  left: 1rem;
+}
+
+.next-button {
+  right: 1rem;
+}
+
+.prev-icon,
+.next-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .slide-title {
+    font-size: 2.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .slide-description {
+    font-size: 1rem;
+  }
+
+  .start-button {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+/* Animations personnalisées */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Styles généraux */
+:host {
+  display: block;
+  width: 100%;
+}
+
+/* Styles de transition */
+.transition-smooth {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Styles de fond décoratif */
+.geometric-background {
+  position: absolute;
+  opacity: 0.1;
+  z-index: -1;
+}
+
+/* Styles des boutons */
+.action-button {
+  @apply px-6 py-3 rounded-full transition-all duration-300 flex items-center justify-center space-x-2;
+}
+
+.action-button-primary {
+  @apply bg-orange-500 text-white hover:bg-orange-600;
+}
+
+.action-button-secondary {
+  @apply border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white;
+}
+
+/* Styles des statistiques */
+.stat-container {
+  @apply flex items-center justify-center mb-2 text-orange-500 dark:text-orange-400;
+}
+
+.stat-value {
+  @apply text-2xl font-bold text-gray-900 dark:text-white ml-2;
+}
+
+.stat-label {
+  @apply text-sm text-gray-600 dark:text-gray-300;
+}
+
+/* Animations */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :host {
+    background-color: theme('colors.gray.900');
+    color: theme('colors.white');
+  }
+}

@@ -1,0 +1,46 @@
+<section class="py-16 dark:to-gray-800">
+  <div class="container mx-auto px-4">
+    <!-- En-tête -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Nos Actions Phares
+      </h2>
+      <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Découvrez comment nous transformons des vies à travers nos différents programmes et initiatives
+      </p>
+    </div>
+
+    <!-- Grille des points forts -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div *ngFor="let highlight of highlights" 
+           class="group bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+           (click)="navigateToProject(highlight.link)">
+        
+        <!-- Icône -->
+        <div class="mb-4 w-12 h-12 rounded-lg bg-orange-100 dark:bg-orange-900 flex items-center justify-center text-orange-600 dark:text-orange-300 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="highlight.icon"/>
+          </svg>
+        </div>
+
+        <!-- Titre -->
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-300">
+          {{ highlight.title }}
+        </h3>
+
+        <!-- Description -->
+        <p class="text-gray-600 dark:text-gray-300">
+          {{ highlight.description }}
+        </p>
+
+        <!-- Lien "En savoir plus" -->
+        <div class="mt-4 flex items-center text-orange-600 dark:text-orange-400 group-hover:text-orange-700 dark:group-hover:text-orange-300">
+          <span class="text-sm font-medium">En savoir plus</span>
+          <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
