@@ -1,0 +1,175 @@
+<app-navigation></app-navigation>
+
+<!-- Hero Section -->
+<section class="relative h-[70vh] overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img 
+      [src]="heroImage" 
+      alt="Actualités Dahlia" 
+      class="w-full h-full object-cover brightness-50"
+    >
+  </div>
+  <div class="relative z-10 container mx-auto px-4 flex items-center justify-center h-full text-center">
+    <div class="text-white max-w-3xl">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-orange-400">
+        Nos Actualités
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-white/90">
+        Suivez notre mission, nos innovations et nos impacts à travers nos dernières actualités.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Article Vedette -->
+<section class="bg-white dark:bg-gray-800 py-16">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <img 
+          [src]="featuredArticle.image" 
+          [alt]="featuredArticle.title" 
+          class="w-full rounded-lg shadow-xl transform transition-transform hover:scale-105"
+        >
+      </div>
+      <div>
+        <div class="flex items-center mb-4 space-x-4">
+          <span class="text-gray-600 dark:text-gray-300">
+            {{ featuredArticle.date | date:'dd MMM yyyy' }}
+          </span>
+          <span class="text-gray-600 dark:text-gray-300">
+            {{ featuredArticle.readTime }} min de lecture
+          </span>
+        </div>
+        <h2 class="text-3xl font-bold mb-4 text-orange-600 dark:text-orange-400">
+          {{ featuredArticle.title }}
+        </h2>
+        <p class="text-gray-700 dark:text-gray-300 mb-6">
+          {{ featuredArticle.summary }}
+        </p>
+        <div class="flex space-x-2 mb-6">
+          <span 
+            *ngFor="let tag of featuredArticle.tags"
+            class="px-3 py-1 bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 rounded-full text-sm"
+          >
+            {{ tag }}
+          </span>
+        </div>
+        <a 
+          [routerLink]="['/article', featuredArticle.id]"
+          class="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300"
+        >
+          Lire l'article complet
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filtres de Tags -->
+<section class="bg-gray-100 dark:bg-gray-900 py-8">
+  <div class="container mx-auto px-4 text-center">
+    <div class="flex justify-center space-x-4 mb-6 flex-wrap">
+      <button 
+        (click)="filterByTag()"
+        class="px-4 py-2 rounded-full transition-colors duration-300 m-2"
+        [ngClass]="{
+          'bg-orange-500 text-white': !selectedTag,
+          'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300': selectedTag
+        }"
+      >
+        Tous les Articles
+      </button>
+      <button 
+        *ngFor="let tag of ['Innovation', 'Développement Social', 'Entrepreneuriat', 'Partenariat']"
+        (click)="filterByTag(tag)"
+        class="px-4 py-2 rounded-full transition-colors duration-300 m-2"
+        [ngClass]="{
+          'bg-orange-500 text-white': selectedTag === tag,
+          'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300': selectedTag !== tag
+        }"
+      >
+        {{ tag }}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Derniers Articles -->
+<section class="py-16 bg-white dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-12 text-center text-orange-600 dark:text-orange-400">
+      Dernières Actualités
+    </h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let article of getFilteredArticles()" 
+        class="bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transform transition-all hover:scale-105"
+      >
+        <img 
+          [src]="article.image" 
+          [alt]="article.title" 
+          class="w-full h-48 object-cover"
+        >
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="text-gray-600 dark:text-gray-300">
+              {{ article.date | date:'dd MMM yyyy' }}
+            </span>
+            <span class="text-gray-600 dark:text-gray-300">
+              {{ article.readTime }} min
+            </span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+            {{ article.title }}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            {{ article.summary }}
+          </p>
+          <div class="flex space-x-2 mb-4">
+            <span 
+              *ngFor="let tag of article.tags"
+              class="px-2 py-1 bg-orange-100 dark:bg-orange-900 text-orange-600 dark:text-orange-300 rounded-full text-xs"
+            >
+              {{ tag }}
+            </span>
+          </div>
+          <a 
+            [routerLink]="['/article', article.id]"
+            class="text-orange-500 hover:text-orange-600 dark:text-orange-400 dark:hover:text-orange-300"
+          >
+            Lire Plus
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Appel à l'Action -->
+<section class="bg-gradient-to-r from-orange-500 to-pink-500 text-white py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-6">
+      Restez Informé(e)
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Abonnez-vous à notre newsletter pour ne manquer aucune de nos actualités et initiatives.
+    </p>
+    <div class="flex justify-center space-x-4">
+      <button 
+        (click)="scrollToNewsletter()"
+        class="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+      >
+        S'abonner
+      </button>
+      <a 
+        href="/contact" 
+        class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-colors"
+      >
+        Contactez-nous
+      </a>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

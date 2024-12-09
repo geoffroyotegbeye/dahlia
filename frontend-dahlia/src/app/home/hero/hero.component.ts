@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/co
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SafeUrlPipe } from '../../shared/pipes/safe-url.pipe';
 
 interface Slide {
   image: string;
@@ -14,7 +13,7 @@ interface Slide {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, RouterModule, SafeUrlPipe],
+  imports: [CommonModule, RouterModule],
   templateUrl: './hero.component.html',
   styleUrls: ['./hero.component.css'],
   animations: [
@@ -61,7 +60,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       description: 'Découvrez nos actions pour soutenir les familles démunies grâce à la générosité et à la solidarité de chacun.'
     },
     {
-      image: 'assets/images/hero3.webp',
+      image: '/assets/images/image4.webp',
       title: "Car Dieu aime celui qui donne avec joie.",
       subtitle: "(2 Corinthiens 9:7)",
       description: 'Rejoignez notre communauté et contribuez à redonner espoir et dignité à ceux qui en ont le plus besoin.'
@@ -70,9 +69,10 @@ export class HeroComponent implements OnInit, OnDestroy {
  
 
   @ViewChild('about') private aboutSection!: ElementRef;
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
 
-  heroTitle = 'Transformer des Vies, Construire des Communautés';
-  heroSubtitle = 'Ensemble, nous créons un impact durable et positif.';
+  heroTitle = "Celui qui a pitié du pauvre prête à l'Éternel, Qui lui rendra selon son œuvre.";
+  heroSubtitle = 'Rejoignez notre mission pour un monde meilleur à travers des actions concrètes et significatives.';
   
   heroStats = [
     { 
@@ -93,7 +93,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   ];
 
   videoModalOpen = false;
-  videoUrl = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Remplacer par votre vidéo réelle
+  videoUrl = '/assets/videos/video1.mp4'; 
 
   constructor() {
     this.preloadImages();
@@ -151,9 +151,19 @@ export class HeroComponent implements OnInit, OnDestroy {
 
   openVideoModal() {
     this.videoModalOpen = true;
+    // Attendre que le DOM soit mis à jour
+    setTimeout(() => {
+      if (this.videoPlayer) {
+        this.videoPlayer.nativeElement.play();
+      }
+    });
   }
 
   closeVideoModal() {
+    if (this.videoPlayer) {
+      this.videoPlayer.nativeElement.pause();
+      this.videoPlayer.nativeElement.currentTime = 0;
+    }
     this.videoModalOpen = false;
   }
 

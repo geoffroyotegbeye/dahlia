@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroComponent } from '../../home/hero/hero.component';
-import { BannerComponent } from '../../home/banner/banner.component';
+// import { BannerComponent } from '../../home/banner/banner.component';
 import { MissionSummaryComponent } from '../../home/mission-summary/mission-summary.component';
 import { FundraiserListComponent } from '../../home/fundraiser-list/fundraiser-list.component';
 import { CallToActionComponent } from '../../home/call-to-action/call-to-action.component';
-import { HighlightsComponent } from '../../home/highlights/highlights.component';
+// import { HighlightsComponent } from '../../home/highlights/highlights.component';
 import { ActualityComponent } from '../../home/actuality/actuality.component';
 import { NewsletterComponent } from '../../home/newsletter/newsletter.component';
 import { NavigationComponent } from '../../home/navigation/navigation.component';
 import { FooterComponent } from '../../home/footer/footer.component';
+import { ScrollToTopComponent } from '../../shared/scroll-to-top/scroll-to-top.component';
 
 @Component({
   selector: 'app-home',
@@ -18,14 +19,15 @@ import { FooterComponent } from '../../home/footer/footer.component';
     CommonModule, 
     NavigationComponent,
     HeroComponent, 
-    BannerComponent, 
+    // BannerComponent, 
     MissionSummaryComponent, 
     FundraiserListComponent, 
     CallToActionComponent, 
-    HighlightsComponent,
+    // HighlightsComponent,
     ActualityComponent,
     NewsletterComponent,
-    FooterComponent
+    FooterComponent,
+    ScrollToTopComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

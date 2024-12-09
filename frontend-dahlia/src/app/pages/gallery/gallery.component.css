@@ -1,0 +1,20 @@
+/* Styles spécifiques pour la page Galerie */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Animation de survol pour les éléments de galerie */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Effet de transition pour les boutons */
+button {
+  transition: all 0.3s ease;
+}
+
+/* Styles pour la superposition des images */
+.group:hover .group-hover\:opacity-100 {
+  opacity: 1;
+}

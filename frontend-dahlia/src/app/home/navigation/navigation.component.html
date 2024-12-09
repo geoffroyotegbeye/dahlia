@@ -1,15 +1,15 @@
 <nav 
   class="fixed top-0 left-0 w-full z-50 transition-all duration-300"
   [ngClass]="{
-    'bg-white/90': !isScrolled,
-    'bg-white/80': isScrolled,
-    'shadow-md': isScrolled
+    'bg-white/90 dark:bg-gray-900/90': !isScrolled,
+    'bg-white/80 dark:bg-gray-900/80': isScrolled,
+    'shadow-md dark:shadow-gray-800': isScrolled
   }">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo -->
     <div class="flex items-center">
       <img 
-        src="assets/images/logo.svg" 
+        src="/assets/images/logo.png" 
         alt="Dahlia Logo" 
         class="h-10 w-auto transition-transform duration-300 hover:scale-105"
       >
@@ -21,11 +21,11 @@
         <ng-container *ngFor="let item of navigationItems">
           <a 
             [routerLink]="item.route"
-            class="text-gray-800 hover:text-orange-500 transition-colors duration-300 flex items-center space-x-2 group"
+            class="text-gray-800 dark:text-gray-200 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 group"
           >
             <svg 
               *ngIf="item.icon" 
-              class="w-5 h-5 text-gray-500 group-hover:text-orange-500 transition-colors duration-300" 
+              class="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors duration-300" 
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -40,114 +40,80 @@
             <span>{{ item.label }}</span>
           </a>
         </ng-container>
-
-        <!-- Menu Déroulant Bénévolat -->
-        <div class="relative group">
-          <button 
-            class="text-gray-800 hover:text-orange-500 transition-colors duration-300 flex items-center space-x-2 group"
-          >
-            <svg 
-              class="w-5 h-5 text-gray-500 group-hover:text-orange-500 transition-colors duration-300" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
-                stroke-width="2" 
-                d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
-              />
-            </svg>
-            <span>Devenir Bénévole</span>
-            <svg 
-              class="w-4 h-4 transition-transform duration-300 group-hover:rotate-180" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
-                stroke-width="2" 
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </button>
-          
-          <!-- Sous-menu Bénévolat -->
-          <div 
-            class="absolute hidden group-hover:block bg-white shadow-lg rounded-lg p-4 w-64 top-full right-0 mt-2 z-50 transform origin-top-right transition-all duration-300"
-          >
-            <div class="space-y-2">
-              <ng-container *ngFor="let item of volunteerItems">
-                <a 
-                  [routerLink]="item.route"
-                  class="flex items-center space-x-2 text-gray-700 hover:text-orange-500 hover:bg-orange-50 p-2 rounded-md transition-colors duration-300"
-                >
-                  <svg 
-                    *ngIf="item.icon" 
-                    class="w-5 h-5 text-gray-500 group-hover:text-orange-500 transition-colors duration-300" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      stroke-width="2" 
-                      [attr.d]="item.icon"
-                    />
-                  </svg>
-                  <span>{{ item.label }}</span>
-                </a>
-              </ng-container>
-            </div>
-          </div>
-        </div>
       </div>
-    </div>
+    </div> 
 
     <!-- Boutons d'Action -->
     <div class="hidden md:flex items-center space-x-4">
+      <!-- Dark Mode Toggle Button -->
       <button 
-        class="px-4 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-300"
-      >
-        Faire un Don
-      </button>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <div class="md:hidden">
-      <button 
-        (click)="toggleMobileMenu()"
-        class="text-gray-800 focus:outline-none"
+        (click)="toggleTheme()" 
+        class="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
+        aria-label="Changer de mode d'affichage"
       >
         <svg 
-          *ngIf="!isMobileMenuOpen" 
-          class="w-6 h-6" 
+          *ngIf="!isDarkMode" 
+          xmlns="http://www.w3.org/2000/svg" 
+          class="h-6 w-6" 
           fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
         >
           <path 
             stroke-linecap="round" 
             stroke-linejoin="round" 
             stroke-width="2" 
-            d="M4 6h16M4 12h16M4 18h16"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" 
           />
         </svg>
         <svg 
-          *ngIf="isMobileMenuOpen" 
-          class="w-6 h-6" 
+          *ngIf="isDarkMode" 
+          xmlns="http://www.w3.org/2000/svg" 
+          class="h-6 w-6" 
           fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
         >
           <path 
             stroke-linecap="round" 
             stroke-linejoin="round" 
             stroke-width="2" 
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m3.343-5.657L5.929 5.929m12.728 12.728L18.071 18.07M12 7a5 5 0 110 10 5 5 0 010-10z" 
+          />
+        </svg>
+      </button>
+      <a 
+        href="/fundraising"
+        class="px-4 py-2 bg-orange-500 dark:bg-orange-600 text-white rounded-full hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors duration-300"
+      >
+        Faire un Don
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden">
+      <button 
+        (click)="toggleMobileMenu()"
+        class="text-gray-800 dark:text-gray-200 focus:outline-none"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            *ngIf="!isMobileMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+          <path
+            *ngIf="isMobileMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
             d="M6 18L18 6M6 6l12 12"
           />
         </svg>
@@ -158,74 +124,79 @@
   <!-- Mobile Menu -->
   <div 
     *ngIf="isMobileMenuOpen"
-    [@mobileMenuAnimation]="'visible'"
-    class="fixed inset-x-0 top-16 bg-white shadow-lg md:hidden z-40 origin-top"
+    class="md:hidden bg-white dark:bg-gray-900 shadow-lg"
   >
-    <div class="container mx-auto px-4 py-6">
-      <div class="space-y-4">
-        <!-- Navigation Items -->
-        <ng-container *ngFor="let item of navigationItems">
-          <a 
-            [routerLink]="item.route"
-            (click)="navigateTo(item.route)"
-            class="block py-2 text-gray-800 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors duration-300 flex items-center space-x-2"
+    <div class="px-4 pt-2 pb-3 space-y-1">
+      <!-- Navigation Items -->
+      <ng-container *ngFor="let item of navigationItems">
+        <a 
+          [routerLink]="item.route"
+          (click)="navigateTo(item.route)"
+          class="block py-2 text-gray-800 dark:text-gray-200 hover:text-orange-500 dark:hover:text-orange-400 hover:bg-orange-50 dark:hover:bg-gray-800 rounded-md transition-colors duration-300 flex items-center space-x-2"
+        >
+          <svg 
+            *ngIf="item.icon" 
+            class="w-5 h-5 text-gray-500 dark:text-gray-400" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
           >
-            <svg 
-              *ngIf="item.icon" 
-              class="w-5 h-5 text-gray-500" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
-                stroke-width="2" 
-                [attr.d]="item.icon"
-              />
-            </svg>
-            <span>{{ item.label }}</span>
-          </a>
-        </ng-container>
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              [attr.d]="item.icon"
+            />
+          </svg>
+          <span>{{ item.label }}</span>
+        </a>
+      </ng-container>
 
-        <!-- Bénévolat Section Mobile -->
-        <div class="space-y-2">
-          <div class="text-lg font-semibold text-gray-800 border-b pb-2">
-            Devenir Bénévole
-          </div>
-          <ng-container *ngFor="let item of volunteerItems">
-            <a 
-              [routerLink]="item.route"
-              (click)="navigateTo(item.route)"
-              class="block py-2 text-gray-700 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors duration-300 flex items-center space-x-2"
-            >
-              <svg 
-                *ngIf="item.icon" 
-                class="w-5 h-5 text-gray-500" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  stroke-linecap="round" 
-                  stroke-linejoin="round" 
-                  stroke-width="2" 
-                  [attr.d]="item.icon"
-                />
-              </svg>
-              <span>{{ item.label }}</span>
-            </a>
-          </ng-container>
-        </div>
-
-        <!-- Mobile Action Buttons -->
-        <div class="pt-4 border-t">
-          <button 
-            class="w-full py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-300"
+      <!-- Mobile Action Buttons -->
+      <div class="pt-4 border-t dark:border-gray-700 flex justify-between">
+        <a  
+          href="/fundraising"
+          class="px-2 py-3 bg-orange-500 dark:bg-orange-600 text-white rounded-full hover:bg-orange-600 dark:hover:bg-orange-700 transition-colors duration-300"
+        >
+          Faire un Don
+        </a>
+        <!-- Dark Mode Toggle Button -->
+        <button 
+          (click)="toggleTheme()" 
+          class="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
+          aria-label="Changer de mode d'affichage"
+        >
+          <svg 
+            *ngIf="!isDarkMode" 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
           >
-            Contactez-nous
-          </button>
-        </div>
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" 
+            />
+          </svg>
+          <svg 
+            *ngIf="isDarkMode" 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              d="M12 3v1m0 16v1m9-9h-1M4 12H3m3.343-5.657L5.929 5.929m12.728 12.728L18.071 18.07M12 7a5 5 0 110 10 5 5 0 010-10z" 
+            />
+          </svg>
+        </button>
       </div>
     </div>
   </div>

@@ -18,8 +18,8 @@ interface MissionValue {
 export class MissionSummaryComponent implements OnDestroy {
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
   
-  thumbnailPath = 'assets/images/mission-thumbnail.webp';
-  videoPath = 'assets/videos/mission-video.mp4';
+  thumbnailPath = 'assets/images/image1.webp';
+  videoPath = '/assets/videos/video2.mp4';
   isVideoPlaying = false;
 
   missionValues: MissionValue[] = [

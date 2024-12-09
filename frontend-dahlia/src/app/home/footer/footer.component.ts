@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent {
+  currentYear = new Date().getFullYear();
   totalDonation = 45678; // Montant total des dons
   donationGoal = 100000; // Objectif de collecte
 
@@ -18,13 +19,11 @@ export class FooterComponent {
     return Math.round((this.totalDonation / this.donationGoal) * 100);
   }
 
-  // Formatage du montant total
+  // Formatage du montant en euros
   formatAmount(amount: number): string {
-    return new Intl.NumberFormat('fr-FR', { 
-      style: 'currency', 
-      currency: 'EUR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR'
     }).format(amount);
   }
 }

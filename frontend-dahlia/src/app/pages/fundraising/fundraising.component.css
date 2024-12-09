@@ -1,0 +1,20 @@
+/* Styles spécifiques pour la page Fundraising */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Animation de survol pour les cartes de collecte */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Styles pour la modal de don */
+.modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Effet de transition pour les boutons */
+button {
+  transition: all 0.3s ease;
+}

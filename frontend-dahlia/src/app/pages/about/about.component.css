@@ -1,0 +1,17 @@
+/* Styles spécifiques pour la page About */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Animation de survol pour les cartes */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Effet de dégradé sur le texte */
+.text-gradient {
+  background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

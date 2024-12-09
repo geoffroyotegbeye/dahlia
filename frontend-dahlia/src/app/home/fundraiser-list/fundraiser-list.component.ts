@@ -5,18 +5,17 @@ import { CommonModule } from '@angular/common';
   selector: 'app-fundraiser-list',
   standalone: true,
   templateUrl: './fundraiser-list.component.html',
-  styleUrls: ['./fundraiser-list.component.css'],
   imports: [CommonModule]
 })
 export class FundraiserListComponent {
   fundraisers = [
     {
-      name: 'Construction d\'une École',
-      description: 'Aidez-nous à construire une nouvelle école pour les enfants défavorisés.',
+      name: 'Achat de fournitures scolaires.', 
+      description: 'Aidez-nous à acheter des fournitures scolaires pour les enfants afin de leur aider à avoir un avenir meilleur.',
       goal: 50000,
       collected: 37500,
       progress: 75,
-      image: '/assets/images/school-project.jpg'
+      image: '/assets/images/fourniture1.webp'
     },
     {
       name: 'Programme Alimentaire',
@@ -24,7 +23,7 @@ export class FundraiserListComponent {
       goal: 25000,
       collected: 12500,
       progress: 50,
-      image: '/assets/images/food-program.jpg'
+      image: '/assets/images/image3.webp'
     },
     {
       name: 'Formation Professionnelle',
@@ -32,7 +31,7 @@ export class FundraiserListComponent {
       goal: 35000,
       collected: 24500,
       progress: 70,
-      image: '/assets/images/training-program.jpg'
+      image: '/assets/images/formation2.webp'
     }
   ];
 

@@ -1,0 +1,153 @@
+<app-navigation></app-navigation>
+
+<!-- Hero Section -->
+<section class="relative h-[70vh] overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img 
+      [src]="heroImage" 
+      alt="Notre mission" 
+      class="w-full h-full object-cover brightness-50"
+    >
+  </div>
+  <div class="relative z-10 container mx-auto px-4 flex items-center justify-center h-full text-center">
+    <div class="text-white max-w-3xl">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-orange-400">
+        Dahlia : Transformer des Vies, Construire des Communautés
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-white/90">
+        Une organisation dédiée à l'autonomisation et au développement durable des communautés vulnérables.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Notre Mission -->
+<section class="bg-gray-50 dark:bg-gray-900 py-16">
+  <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <h2 class="text-3xl font-bold mb-6 text-orange-600 dark:text-orange-400">
+        Notre Mission
+      </h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">
+        Chez Dahlia, nous croyons que chaque individu a le potentiel de transformer sa communauté. 
+        Notre mission est de fournir les outils, les ressources et le soutien nécessaires pour 
+        permettre aux communautés marginalisées de s'épanouir et de devenir autonomes.
+      </p>
+      <p class="text-lg text-gray-700 dark:text-gray-300">
+        Nous travaillons sur des projets d'éducation, de santé, d'entrepreneuriat et de développement 
+        communautaire qui ont un impact durable et significatif.
+      </p>
+    </div>
+    <div>
+      <img 
+        src="https://images.unsplash.com/photo-1573495627361-d9b187f1f4f8?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb" 
+        alt="Mission Dahlia" 
+        class="rounded-lg shadow-xl transform transition-transform hover:scale-105"
+      >
+    </div>
+  </div>
+</section>
+
+<!-- Nos Valeurs -->
+<section class="py-16 bg-white dark:bg-gray-800">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-12 text-orange-600 dark:text-orange-400">
+      Nos Valeurs Fondamentales
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let value of values" 
+        class="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-md hover:shadow-xl transition-all"
+      >
+        <div class="flex justify-center mb-4">
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            class="h-12 w-12 text-orange-500" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              [attr.d]="value.icon"
+            />
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-3 text-gray-800 dark:text-white">
+          {{ value.title }}
+        </h3>
+        <p class="text-gray-600 dark:text-gray-300">
+          {{ value.description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notre Équipe -->
+<section class="bg-gray-50 dark:bg-gray-900 py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-12 text-orange-600 dark:text-orange-400">
+      Notre Équipe
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let member of teamMembers" 
+        class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all hover:scale-105"
+      >
+        <img 
+          [src]="member.image" 
+          [alt]="member.name" 
+          class="w-full h-64 object-cover"
+        >
+        <div class="p-6">
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+            {{ member.name }}
+          </h3>
+          <p class="text-orange-600 dark:text-orange-400 mb-3">
+            {{ member.role }}
+          </p>
+          <p class="text-gray-600 dark:text-gray-300">
+            {{ member.bio }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Appel à l'Action -->
+<section class="bg-gradient-to-r from-orange-500 to-pink-500 text-white py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-6">
+      Rejoignez Notre Mission
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Ensemble, nous pouvons créer un monde plus juste, plus équitable et plus solidaire.
+    </p>
+    <div class="flex justify-center space-x-4">
+      <a 
+        href="/donate" 
+        class="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+      >
+        Faire un Don
+      </a>
+      <button 
+        (click)="scrollToNewsletter()"
+        class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-colors"
+      >
+        S'abonner à la Newsletter
+      </button>
+      <a 
+        href="/contact" 
+        class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-colors"
+      >
+        Contactez-nous
+      </a>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

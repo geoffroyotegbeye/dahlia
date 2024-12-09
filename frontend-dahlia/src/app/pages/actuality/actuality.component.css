@@ -1,0 +1,15 @@
+/* Styles spécifiques pour la page Actuality */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Animation de survol pour les cartes d'articles */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Effet de transition pour les images */
+img {
+  transition: transform 0.3s ease;
+}

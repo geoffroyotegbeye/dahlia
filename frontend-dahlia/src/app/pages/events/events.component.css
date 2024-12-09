@@ -1,0 +1,20 @@
+/* Styles spécifiques pour la page Events */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Animation de survol pour les cartes d'événements */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Effet de grayscale pour les événements passés */
+.grayscale {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.grayscale:hover {
+  filter: grayscale(0%);
+}

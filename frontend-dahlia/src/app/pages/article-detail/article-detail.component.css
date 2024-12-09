@@ -1,0 +1,25 @@
+/* Styles spécifiques pour la page de détail d'article */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Prose styles pour le contenu de l'article */
+.prose {
+  max-width: 100%;
+  line-height: 1.7;
+}
+
+/* Animation de survol pour les cartes d'articles recommandés */
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+/* Styles pour les boutons de partage social */
+.social-share-button {
+  transition: transform 0.2s ease;
+}
+
+.social-share-button:hover {
+  transform: scale(1.1);
+}

@@ -27,7 +27,7 @@ export class ActualityComponent {
       title: 'Nouvelle Campagne d\'Éducation',
       summary: 'Lancement d\'un programme innovant pour soutenir l\'éducation des jeunes dans les zones rurales.',
       date: new Date('2024-01-15'),
-      imageUrl: 'assets/images/education-campaign.jpg',
+      imageUrl: 'assets/images/education.webp',
       category: 'Éducation',
       readTime: 3
     },
@@ -36,7 +36,7 @@ export class ActualityComponent {
       title: 'Projet de Développement Communautaire',
       summary: 'Nos équipes ont travaillé dur pour améliorer les infrastructures locales et créer de nouvelles opportunités.',
       date: new Date('2024-02-01'),
-      imageUrl: 'assets/images/community-project.jpg',
+      imageUrl: 'assets/images/developpement.webp',
       category: 'Développement',
       readTime: 4
     },
@@ -45,7 +45,7 @@ export class ActualityComponent {
       title: 'Partenariat avec une ONG Internationale',
       summary: 'Un nouveau partenariat stratégique pour amplifier notre impact et étendre nos programmes.',
       date: new Date('2024-02-20'),
-      imageUrl: 'assets/images/partnership.jpg',
+      imageUrl: 'assets/images/partenariat.webp',
       category: 'Collaboration',
       readTime: 2
     }

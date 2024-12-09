@@ -58,7 +58,7 @@
       <div class="hidden md:block relative">
         <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
           <img 
-            src="assets/images/hero-image.jpg" 
+            src="/assets/images/image2.webp" 
             alt="Impact de notre association" 
             class="w-full h-96 object-cover"
           >
@@ -80,24 +80,31 @@
   <!-- Modal Vidéo -->
   <div 
     *ngIf="videoModalOpen" 
-    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 p-4"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
     (click)="closeVideoModal()">
     <div 
-      class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden max-w-4xl w-full shadow-2xl"
+      class="bg-white dark:bg-gray-900 rounded-xl overflow-hidden max-w-4xl w-full shadow-2xl relative"
       (click)="$event.stopPropagation()">
-      <div class="relative">
-        <iframe 
-          [src]="videoUrl | safeUrl" 
-          class="w-full aspect-video"
-          allowfullscreen>
-        </iframe>
-        <button 
-          class="absolute top-4 right-4 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-orange-500 hover:text-white transition-colors duration-300"
-          (click)="closeVideoModal()">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
+      <!-- Bouton fermer -->
+      <button 
+        (click)="closeVideoModal()"
+        class="absolute top-4 right-4 text-white hover:text-orange-500 transition-colors duration-300 z-10">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+      
+      <!-- Conteneur vidéo avec ratio 16:9 -->
+      <div class="relative pt-[56.25%]">
+        <video
+          #videoPlayer
+          class="absolute top-0 left-0 w-full h-full object-cover"
+          [src]="videoUrl"
+          controls
+          controlsList="nodownload"
+          preload="metadata">
+          <p>Votre navigateur ne prend pas en charge la lecture de vidéos HTML5.</p>
+        </video>
       </div>
     </div>
   </div>

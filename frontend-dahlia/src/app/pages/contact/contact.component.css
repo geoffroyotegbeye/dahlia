@@ -1,0 +1,25 @@
+/* Styles spécifiques pour la page de Contact */
+:host {
+  display: block;
+  background-color: theme('colors.gray.50');
+}
+
+/* Animation de survol pour les éléments de contact */
+.hover\:shadow-md:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Effet de transition pour les boutons et liens */
+button, a {
+  transition: all 0.3s ease;
+}
+
+/* Styles pour les icônes de réseaux sociaux */
+.social-icon {
+  transform: scale(1);
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}

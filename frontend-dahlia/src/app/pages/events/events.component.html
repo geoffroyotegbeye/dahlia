@@ -1,0 +1,174 @@
+<app-navigation></app-navigation>
+
+<!-- Hero Section -->
+<section class="relative h-[70vh] overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img 
+      [src]="heroImage" 
+      alt="Événements Dahlia" 
+      class="w-full h-full object-cover brightness-50"
+    >
+  </div>
+  <div class="relative z-10 container mx-auto px-4 flex items-center justify-center h-full text-center">
+    <div class="text-white max-w-3xl">
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 text-orange-400">
+        Nos Événements
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 text-white/90">
+        Rejoignez-nous pour des moments de partage, d'apprentissage et d'impact social.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Filtres de Catégories -->
+<section class="bg-gray-100 dark:bg-gray-900 py-8">
+  <div class="container mx-auto px-4 text-center">
+    <div class="flex justify-center space-x-4 mb-6">
+      <button 
+        (click)="filterEvents()"
+        class="px-4 py-2 rounded-full transition-colors duration-300"
+        [ngClass]="{
+          'bg-orange-500 text-white': !filterCategory,
+          'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300': filterCategory
+        }"
+      >
+        Tous
+      </button>
+      <button 
+        *ngFor="let category of ['Collecte de Fonds', 'Sensibilisation', 'Formation', 'Bénévolat']"
+        (click)="filterEvents(category)"
+        class="px-4 py-2 rounded-full transition-colors duration-300"
+        [ngClass]="{
+          'bg-orange-500 text-white': filterCategory === category,
+          'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300': filterCategory !== category
+        }"
+      >
+        {{ category }}
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Événements à Venir -->
+<section class="py-16 bg-white dark:bg-gray-800">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-12 text-center text-orange-600 dark:text-orange-400">
+      Événements à Venir
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let event of getFilteredUpcomingEvents()" 
+        class="bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden shadow-md transform transition-all hover:scale-105"
+      >
+        <img 
+          [src]="event.image" 
+          [alt]="event.title" 
+          class="w-full h-48 object-cover"
+        >
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="px-3 py-1 bg-orange-500 text-white rounded-full text-sm">
+              {{ event.category }}
+            </span>
+            <span class="text-gray-600 dark:text-gray-300">
+              {{ event.date | date:'dd MMM yyyy' }}
+            </span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+            {{ event.title }}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            {{ event.description }}
+          </p>
+          <div class="flex items-center text-gray-700 dark:text-gray-300 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {{ event.location }}
+          </div>
+          <a 
+            *ngIf="event.registrationLink"
+            [href]="event.registrationLink" 
+            class="block w-full text-center bg-orange-500 text-white py-2 rounded-full hover:bg-orange-600 transition-colors"
+          >
+            S'inscrire
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Événements Passés -->
+<section class="py-16 bg-gray-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold mb-12 text-center text-orange-600 dark:text-orange-400">
+      Événements Passés
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div 
+        *ngFor="let event of getFilteredPastEvents()" 
+        class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md opacity-70 hover:opacity-100 transition-all"
+      >
+        <img 
+          [src]="event.image" 
+          [alt]="event.title" 
+          class="w-full h-48 object-cover grayscale hover:grayscale-0 transition-all"
+        >
+        <div class="p-6">
+          <div class="flex justify-between items-center mb-3">
+            <span class="px-3 py-1 bg-gray-500 text-white rounded-full text-sm">
+              {{ event.category }}
+            </span>
+            <span class="text-gray-600 dark:text-gray-300">
+              {{ event.date | date:'dd MMM yyyy' }}
+            </span>
+          </div>
+          <h3 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">
+            {{ event.title }}
+          </h3>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            {{ event.description }}
+          </p>
+          <div class="flex items-center text-gray-700 dark:text-gray-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            {{ event.location }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Appel à l'Action -->
+<section class="bg-gradient-to-r from-orange-500 to-pink-500 text-white py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-6">
+      Rejoignez Nos Prochains Événements
+    </h2>
+    <p class="text-xl mb-8 max-w-2xl mx-auto">
+      Restez informé(e) de nos événements et participez à des moments de transformation sociale.
+    </p>
+    <div class="flex justify-center space-x-4">
+      <a 
+        href="/newsletter" 
+        class="bg-white text-orange-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors"
+      >
+        S'abonner à la Newsletter
+      </a>
+      <a 
+        href="/contact" 
+        class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white/20 transition-colors"
+      >
+        Contactez-nous
+      </a>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>
