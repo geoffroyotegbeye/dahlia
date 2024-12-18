@@ -71,7 +71,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   @ViewChild('about') private aboutSection!: ElementRef;
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
 
-  heroTitle = "Celui qui a pitié du pauvre prête à l'Éternel, Qui lui rendra selon son œuvre.";
+  heroTitle = "Parce que le sourire d'un enfant n'a pas de prix !";
   heroSubtitle = 'Rejoignez notre mission pour un monde meilleur à travers des actions concrètes et significatives.';
   
   heroStats = [

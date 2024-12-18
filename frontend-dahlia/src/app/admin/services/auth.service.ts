@@ -24,8 +24,8 @@ export class AuthService {
       const mockUser: User = {
         id: '1',
         email: email,
-        firstName: 'Admin',
-        lastName: 'Dahlia',
+        first_name: 'Admin',
+        last_name: 'Dahlia',
         role: UserRole.SUPER_ADMIN,
         isActive: true,
         createdAt: new Date()

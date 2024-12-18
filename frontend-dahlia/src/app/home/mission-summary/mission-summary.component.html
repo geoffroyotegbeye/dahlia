@@ -62,27 +62,6 @@
           </p>
         </div>
 
-        <!-- Valeurs de Mission -->
-        <div class="grid md:grid-cols-3 gap-6">
-          <div 
-            *ngFor="let value of missionValues" 
-            class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
-            <div class="flex items-center mb-4">
-              <div class="w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="value.icon"/>
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-                {{ value.title }}
-              </h3>
-            </div>
-            <p class="text-sm text-gray-600 dark:text-gray-300">
-              {{ value.description }}
-            </p>
-          </div>
-        </div>
-
         <!-- Bouton d'Action -->
         <div class="mt-8">
           <button 
@@ -94,6 +73,26 @@
             </svg>
           </button>
         </div>
+      </div>
+    </div>
+     <!-- Valeurs de Mission -->
+     <div class="grid md:grid-cols-3 gap-6 mt-8">
+      <div 
+        *ngFor="let value of missionValues" 
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transform transition-transform duration-300 hover:scale-105 hover:shadow-xl">
+        <div class="flex items-center mb-4">
+          <div class="flex flex-shrink-0 w-12 h-12 bg-orange-100 dark:bg-orange-900 rounded-full flex items-center justify-center mr-4">
+            <svg class="w-6 h-6 text-orange-500 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" [attr.d]="value.icon"/>
+            </svg>
+          </div>
+          <h3 class="lg:text-xl text-md font-bold text-gray-900 dark:text-white">
+            {{ value.title }}
+          </h3>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          {{ value.description }}
+        </p>
       </div>
     </div>
   </div>

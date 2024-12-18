@@ -11,13 +11,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewsletterComponent {
   email: string = '';
-  firstName: string = '';
+  first_name: string = '';
   isSubscribed: boolean = false;
   subscriptionError: string | null = null;
 
   onSubmit() {
     // Validation de base
-    if (!this.email || !this.firstName) {
+    if (!this.email || !this.first_name) {
       this.subscriptionError = 'Veuillez remplir tous les champs.';
       return;
     }
@@ -32,13 +32,13 @@ export class NewsletterComponent {
     // Simulation d'un abonnement (à remplacer par un vrai service backend)
     try {
       // Ici, vous appelleriez votre service d'abonnement
-      console.log('Abonnement:', { email: this.email, firstName: this.firstName });
+      console.log('Abonnement:', { email: this.email, first_name: this.first_name });
       
       // Réinitialisation du formulaire
       this.isSubscribed = true;
       this.subscriptionError = null;
       this.email = '';
-      this.firstName = '';
+      this.first_name = '';
     } catch (error) {
       this.subscriptionError = 'Une erreur est survenue. Veuillez réessayer.';
       this.isSubscribed = false;

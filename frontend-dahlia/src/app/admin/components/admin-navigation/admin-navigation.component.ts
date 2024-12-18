@@ -1,52 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router, NavigationEnd } from '@angular/router';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { inject } from '@angular/core';
+import { filter } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-admin-dashboard',
+  selector: 'app-admin-navigation',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  imports: [CommonModule, RouterModule, HttpClientModule],
+  templateUrl: './admin-navigation.component.html',
+  styleUrls: ['./admin-navigation.component.css']
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminNavigationComponent {
   private authService = inject(AuthService);
   private router = inject(Router);
   private http = inject(HttpClient);
 
-  userEmail: string | null = null;
   isDropdownOpen = false;
-  isDarkMode = false;
+  isMobileMenuOpen = false;
 
-  ngOnInit(): void {
-    if (!this.authService.checkAuthStatus()) {
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.userEmail = this.authService.getUserEmail();
+  constructor() {
+    // S'abonner aux événements de navigation
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      // Fermer le menu mobile et les dropdowns après la navigation
+      this.closeAllMenus();
+    });
+  }
+
+  get userEmail(): string | null {
+    return this.authService.getUserEmail();
   }
 
   toggleDropdown(): void {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
 
-  toggleDarkMode(): void {
-    this.isDarkMode = !this.isDarkMode;
-    if (this.isDarkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+  toggleMobileMenu(): void {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
-  toggleMenu(): void {
-    const menu = document.getElementById('mobile-menu');
-    if (menu) {
-      menu.classList.toggle('hidden');
-    }
+  closeAllMenus(): void {
+    this.isDropdownOpen = false;
+    this.isMobileMenuOpen = false;
   }
 
   logout(): void {

@@ -7,25 +7,35 @@
   }">
   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
     <!-- Logo -->
-    <div class="flex items-center">
+    <div class="flex items-center cursor-pointer">
       <img 
         src="/assets/images/logo.png" 
         alt="Dahlia Logo" 
         class="h-10 w-auto transition-transform duration-300 hover:scale-105"
       >
+      <div class=" flex flex-col ml-2 text-xl md:text-3xl font-bold text-gray-800 dark:text-gray-200 transition-colors duration-300 hover:text-orange-500 dark:hover:text-orange-400">
+        <span class="text-sm">Lueur d'Enfance</span>
+        <span class="text-sm">Harmonieuse</span>
+      </div>
     </div>
 
     <!-- Desktop Navigation -->
-    <div class="hidden md:flex items-center space-x-6">
+    <div class="hidden lg:flex items-center space-x-6">
       <div class="flex items-center space-x-4">
         <ng-container *ngFor="let item of navigationItems">
           <a 
             [routerLink]="item.route"
             class="text-gray-800 dark:text-gray-200 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300 flex items-center space-x-2 group"
+            [ngClass]="{
+              'hidden xl:flex': item.label === 'Contact' || item.label === 'Galerie'
+            }"
           >
             <svg 
               *ngIf="item.icon" 
               class="w-5 h-5 text-gray-500 dark:text-gray-400 group-hover:text-orange-500 dark:group-hover:text-orange-400 transition-colors duration-300" 
+              [ngClass]="{
+                'hidden xl:block': item.label === 'Contact' || item.label === 'Galerie'
+              }"
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -44,11 +54,11 @@
     </div> 
 
     <!-- Boutons d'Action -->
-    <div class="hidden md:flex items-center space-x-4">
+    <div class="hidden lg:flex items-center space-x-4">
       <!-- Dark Mode Toggle Button -->
       <button 
         (click)="toggleTheme()" 
-        class="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
+        class=" border-2  rounded-full p-2 border-orange-500 text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
         aria-label="Changer de mode d'affichage"
       >
         <svg 
@@ -91,7 +101,7 @@
     </div>
 
     <!-- Mobile Menu Button -->
-    <div class="md:hidden">
+    <div class="lg:hidden">
       <button 
         (click)="toggleMobileMenu()"
         class="text-gray-800 dark:text-gray-200 focus:outline-none"
@@ -124,7 +134,7 @@
   <!-- Mobile Menu -->
   <div 
     *ngIf="isMobileMenuOpen"
-    class="md:hidden bg-white dark:bg-gray-900 shadow-lg"
+    class="lg:hidden bg-white dark:bg-gray-900 shadow-lg"
   >
     <div class="px-4 pt-2 pb-3 space-y-1">
       <!-- Navigation Items -->
@@ -163,7 +173,7 @@
         <!-- Dark Mode Toggle Button -->
         <button 
           (click)="toggleTheme()" 
-          class="text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
+          class="border-2  rounded-full p-2 border-orange-500 text-gray-600 dark:text-gray-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors duration-300"
           aria-label="Changer de mode d'affichage"
         >
           <svg 

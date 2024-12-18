@@ -8,7 +8,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ArticleDetailComponent } from './pages/article-detail/article-detail.component';
 import { GalleryComponent } from './pages/gallery/gallery.component';
 import { AdminDashboardComponent } from './admin/pages/dashboard/dashboard.component';
-import { AdminLoginComponent } from './admin/pages/login/login.component';
 import { AdminUsersComponent } from './admin/pages/users/users.component';
 import { AdminContentPagesComponent } from './admin/pages/content/pages-management/pages-management.component';
 import { AdminArticlesComponent } from './admin/pages/content/articles-management/articles-management.component';
@@ -18,6 +17,8 @@ import { AdminSettingsComponent } from './admin/pages/settings/settings.componen
 import { AdminAnalyticsComponent } from './admin/pages/analytics/analytics.component';
 import { AuthGuard } from './admin/guards/auth.guard';
 import { RoleGuard } from './admin/guards/role.guard';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { LoginComponent } from './pages/login/login.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -29,40 +30,49 @@ export const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'article/:id', component: ArticleDetailComponent },
   { path: 'gallery', component: GalleryComponent },
+  { path: 'connexion', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   // Admin Routes
   { 
     path: 'admin', 
+    loadComponent: () => import('./admin/layouts/admin-layout/admin-layout.component').then(m => m.AdminLayoutComponent),
+    canActivate: [AuthGuard],
     children: [
-      { path: 'login', component: AdminLoginComponent },
       { 
         path: 'dashboard', 
         component: AdminDashboardComponent, 
-        canActivate: [AuthGuard, RoleGuard] 
+        canActivate: [RoleGuard] 
       },
       { 
         path: 'users', 
         component: AdminUsersComponent, 
-        canActivate: [AuthGuard, RoleGuard] 
+        canActivate: [RoleGuard] 
       },
       { 
         path: 'content', 
         children: [
-          { path: 'pages', component: AdminContentPagesComponent, canActivate: [AuthGuard, RoleGuard] },
-          { path: 'articles', component: AdminArticlesComponent, canActivate: [AuthGuard, RoleGuard] },
-          { path: 'fundraisers', component: AdminFundraisersComponent, canActivate: [AuthGuard, RoleGuard] },
-          { path: 'media', component: AdminMediaComponent, canActivate: [AuthGuard, RoleGuard] }
+          { path: 'pages', component: AdminContentPagesComponent, canActivate: [RoleGuard] },
+          { path: 'articles', component: AdminArticlesComponent, canActivate: [RoleGuard] },
+          { path: 'fundraisers', component: AdminFundraisersComponent, canActivate: [RoleGuard] },
+          { path: 'media', component: AdminMediaComponent, canActivate: [RoleGuard] }
         ]
       },
       { 
         path: 'settings', 
         component: AdminSettingsComponent, 
-        canActivate: [AuthGuard, RoleGuard] 
+        canActivate: [RoleGuard] 
       },
       { 
         path: 'analytics', 
         component: AdminAnalyticsComponent, 
-        canActivate: [AuthGuard, RoleGuard] 
+        canActivate: [RoleGuard] 
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full'
       }
     ]
-  }
+  },
+  { path: '**', component: NotFoundComponent }
 ];
